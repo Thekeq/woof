@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>Woof Community</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/stylesEarn.css">
+    <link rel="stylesheet" href="/static/stylesFrens.css">
+    <link rel="stylesheet" href="/static/stylesLeaders.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap">
+    <script type="module">
+        import TonWeb from 'https://cdn.jsdelivr.net/npm/tonweb@0.0.36/+esm'
+        import { beginCell, toNano } from 'https://cdn.jsdelivr.net/npm/@ton/core@0.59.0/+esm'
+        window.beginCell = beginCell;
+        window.toNano = toNano;
+        window.TonWeb = TonWeb;
+    </script>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <script>
+        window.userId = {{ user_id }};
+        window.premium = {{ premium|lower }};
+    </script>
+
+    <script src="/static/script.min.js" integrity="sha384-xroCttHNiPfpyG0fMVZY/plxpQlGtIHKCNyPJ1BJh6oEOV8FG5qKdln0u2wKvIms" crossorigin="anonymous"></script>
+    <script src="/static/scriptTon.min.js" integrity="sha384-ffSzElha1zopz9ShT81adB56xcK0aDndJ941q0J4m+V/JTS4zZHt7Cv20rNdtyRA" crossorigin="anonymous"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+
+    <script>
+        window.TelegramWebApp = window.Telegram.WebApp;
+        window.TelegramWebApp.ready();
+    </script>
+
+</head>
+<body>
+    {% if user_id %}
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+    <div id="content">
+        <div id="home" class="tab-content active">
+            <div class="main-con">
+                <div class="balance-wrap">
+                    <div class="img-con">
+                        <img class="logo" alt="" loading="lazy" width="250" height="250" decoding="async" data-nimg="1" src="/static/media/wooflogo.svg" style="color: transparent;">
+                    </div>
+                    <div class="my-wrap">
+                        <div class="count">{{ balance }}</div>
+                        <div class="currency">WOOFS</div>
+                    </div>
+                </div>
+                <div class="connect-wallet-con">
+                    <div id="ton-connect">
+                        <script>
+                            window.tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+                                manifestUrl: 'https://thekeq.pythonanywhere.com/tonconnect-manifest.json',
+                                buttonRootId: 'ton-connect'
+                            });
+                            tonConnectUI.uiOptions = {
+                                twaReturnUrl: 'https://t.me/thekeq_bot'
+                              };
+                        </script>
+                    </div>
+            </div>
+            </div>
+            <div class="btns-con">
+                <div class="btn-item comunity" onclick="window.open('https://t.me/woofsupfam', '_blank')">
+                    <div class="main-con">
+                        <div class="img-con">
+                            <img alt="" loading="lazy" width="32" height="32" decoding="async" data-nimg="1" src="/static/media/community.svg" style="color: transparent;">
+                        </div>
+                        Join our community
+                    </div>
+                    <div class="icon-con">
+                        <img alt="" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src="/static/media/arrow.svg" style="color: transparent;">
+                    </div>
+                </div>
+                <div class="btn-item" onclick="showRewards('rewards'); loadRewards({{user_id}})">
+                    <div class="main-con">
+                        <div class="img-con">
+                            <img alt="" loading="lazy" width="32" height="32" decoding="async" data-nimg="1" src="/static/media/check.svg" style="color: transparent;">
+                        </div>
+                        Check your rewards
+                    </div>
+                    <div class="icon-con">
+                        <img alt="" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src="/static/media/arrow.svg" style="color: transparent;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="rewards" class="tab-content">
+            <div class>
+                <div class="modal swipe-able-popup-modal fade show" aria-modal="true" role="dialog" style="display: block;">
+                    <div class="modal-dialog swipe-able-popup-wrapper" role="document">
+                        <div class="modal-content">
+                            <div class="swipe-able-popup-container is-open">
+                                <div class="rewards-history-con">
+                                    <div class="cross-con" onclick="showTab('home')">
+                                        <img alt="" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src="/static/media/cross.svg" style="color: transparent;">
+                                    </div>
+                                    <div class="inter title">
+                                        Your Rewards
+                                    </div>
+                                    <div class="section-items-con transactions" id="rewards-container">
+                                        <div class="show-more">Show more</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-backdrop swipe-able-popup-backdrop fade show"></div>
+                </div>
+        </div>
+        <div id="earn" class="tab-content">
+            <div class="section-con">
+                <div class="heading-con">
+                    <div class="heading-text">Tasks</div>
+                    <div class="heading-descr">
+                        <span class="strong">Get rewards</span>for</div>
+                    <div class="heading-descr">completing quests</div>
+                </div>
+                <div class="type-select">
+                    <div class="type-item active" id="limited" onclick="showQuest('limited')">Limited<div class="count"></div></div>
+                    <div class="type-item" id="in-game" onclick="showQuest('in-game')">In-game<div class="count"></div></div>
+                    <div class="type-item" id="partners" onclick="showQuest('partners')">Partners<div class="count"></div></div>
+                </div>
+                <div class="section-items-con quests"  id="quests-container">
+                </div>
+            </div>
+        </div>
+        <div id="frens"  class="tab-content">
+            <div class="scroll-able">
+                <div class="heading-con">
+                    <div class="heading-text">Invite friends</div>
+                    <div class="heading-descr">
+                        <span class="strong">Share</span> your invitation
+                    </div>
+                    <div class="heading-descr">link &amp; <span class="strong mx-2">get 15%</span> of
+                    </div>
+                    <div class="heading-descr">friend's points</div>
+                </div>
+                <p class="total-users">Total
+                <span class="count">0 users</span></p>
+                <div class="users-list-con">
+                    <div class="users-list" id="frens-container">
+                    </div>
+                </div>
+            </div>
+            <div class="btn-item" onclick="invite({{user_id}})">Invite</div>
+        </div>
+        <div id="leaders" class="tab-content">
+            <div class="list-items">
+                <div class="title-con">
+                    <div class="img-con">
+                        <img alt="" loading="lazy" width="80" height="80" decoding="async" data-nimg="1" srcset="/static/media/leaderboard.png" src="/static/media/leaderboard.png" style="color: transparent;">
+                    </div>
+                    <div class="title">Leaderboard</div>
+                    <p class="total-users">Total<span class="count">? users</span></p>
+                </div>
+                <div class="user-item-con">
+                    <div class="side-info">
+                        <div class="img-con">
+                            <img alt="" loading="lazy" width="25" height="25" decoding="async" data-nimg="1" src="/static/media/wooflogo.svg" style="color: transparent;">
+                        </div>
+                        <div class="main-info-con">
+                            <div class="wallet">name</div>
+                            <div class="balance">{{ balance }} WOOFS</div>
+                        </div>
+                    </div>
+                    <div class="place">#0</div>
+                </div>
+                <div class="leaders-list" id="leaders-list">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar">
+        <a href="#" class="nav-item" onclick="showTab('home')">
+            <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="icon" d="M16.8359 26.9688H23.1641V20.0781C23.1641 19.8125 23.082 19.5977 22.918 19.4336C22.7617 19.2695 22.5469 19.1875 22.2734 19.1875H17.7383C17.4648 19.1875 17.2461 19.2695 17.082 19.4336C16.918 19.5977 16.8359 19.8125 16.8359 20.0781V26.9688ZM9.66406 26.2773V16.9727L19.2969 8.89844C19.7656 8.5 20.2344 8.5 20.7031 8.89844L30.3359 16.9727V26.2773C30.3359 27.0898 30.1016 27.7227 29.6328 28.1758C29.1719 28.6289 28.5312 28.8555 27.7109 28.8555H12.3008C11.4727 28.8555 10.8242 28.6289 10.3555 28.1758C9.89453 27.7227 9.66406 27.0898 9.66406 26.2773ZM7.01562 16.7266C6.70312 16.7266 6.45703 16.6328 6.27734 16.4453C6.09766 16.25 6.00781 16.0312 6.00781 15.7891C6.00781 15.4844 6.13281 15.2305 6.38281 15.0273L18.5938 4.77344C19.0312 4.39844 19.5 4.21094 20 4.21094C20.5 4.21094 20.9688 4.39844 21.4062 4.77344L33.6172 15.0273C33.8672 15.2305 33.9922 15.4844 33.9922 15.7891C33.9922 16.0312 33.9023 16.25 33.7227 16.4453C33.5508 16.6328 33.3047 16.7266 32.9844 16.7266C32.8203 16.7266 32.668 16.6875 32.5273 16.6094C32.3945 16.5312 32.2695 16.4453 32.1523 16.3516L20.4102 6.49609C20.2852 6.38672 20.1484 6.33203 20 6.33203C19.8516 6.33203 19.7148 6.38672 19.5898 6.49609L7.85938 16.3516C7.73438 16.4453 7.60156 16.5312 7.46094 16.6094C7.32812 16.6875 7.17969 16.7266 7.01562 16.7266ZM27.6289 10.5039V7.70312C27.6289 7.44531 27.707 7.24219 27.8633 7.09375C28.0195 6.9375 28.2227 6.85938 28.4727 6.85938H29.7266C29.9844 6.85938 30.1875 6.9375 30.3359 7.09375C30.4922 7.24219 30.5703 7.44531 30.5703 7.70312V12.9883L27.6289 10.5039Z" fill="white"></path></svg>
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showTab('leaders')">
+            <svg width="41" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="icon" d="M9.53906 7.5625C9.53906 6.95312 9.71484 6.47656 10.0664 6.13281C10.4258 5.78906 10.918 5.61719 11.543 5.61719H13.8164C13.9102 5.01563 14.1641 4.54688 14.5781 4.21094C15 3.86719 15.5625 3.69531 16.2656 3.69531H25.7344C26.4453 3.69531 27.0078 3.86719 27.4219 4.21094C27.8359 4.54688 28.0898 5.01563 28.1836 5.61719H30.457C31.082 5.61719 31.5703 5.78906 31.9219 6.13281C32.2812 6.47656 32.4609 6.95312 32.4609 7.5625C32.4609 9.17188 32.2031 10.5859 31.6875 11.8047C31.1719 13.0156 30.3984 14.0391 29.3672 14.875C28.3359 15.7109 27.0469 16.3672 25.5 16.8438C25.1406 17.2891 24.7617 17.6914 24.3633 18.0508C23.9648 18.4023 23.5664 18.7031 23.168 18.9531V24.0508H24.9961C25.8242 24.0508 26.4492 24.2734 26.8711 24.7188C27.3008 25.1641 27.5156 25.7773 27.5156 26.5586V28.4922C27.5156 28.7578 27.4258 28.9727 27.2461 29.1367C27.0664 29.3008 26.8555 29.3828 26.6133 29.3828H15.3867C15.1445 29.3828 14.9336 29.3008 14.7539 29.1367C14.5742 28.9727 14.4844 28.7578 14.4844 28.4922V26.5586C14.4844 25.7773 14.6953 25.1641 15.1172 24.7188C15.5469 24.2734 16.1719 24.0508 16.9922 24.0508H18.832V18.9531C18.4336 18.7031 18.0352 18.4023 17.6367 18.0508C17.2383 17.6914 16.8555 17.2891 16.4883 16.8438C14.9414 16.3672 13.6523 15.7109 12.6211 14.875C11.5977 14.0391 10.8281 13.0156 10.3125 11.8047C9.79688 10.5859 9.53906 9.17188 9.53906 7.5625ZM11.2148 7.72656C11.2148 9.39844 11.5312 10.8047 12.1641 11.9453C12.7969 13.0859 13.7266 13.9648 14.9531 14.582C14.5938 13.8633 14.3047 13.0938 14.0859 12.2734C13.8672 11.4453 13.7578 10.582 13.7578 9.68359V7.38672H11.5547C11.4531 7.38672 11.3711 7.42188 11.3086 7.49219C11.2461 7.55469 11.2148 7.63281 11.2148 7.72656ZM27.0352 14.582C28.2695 13.9648 29.2031 13.0859 29.8359 11.9453C30.4688 10.8047 30.7852 9.39844 30.7852 7.72656C30.7852 7.63281 30.7539 7.55469 30.6914 7.49219C30.6289 7.42188 30.5469 7.38672 30.4453 7.38672H28.2422V9.68359C28.2422 10.582 28.1328 11.4453 27.9141 12.2734C27.6953 13.0938 27.4023 13.8633 27.0352 14.582Z" fill="white"></path></svg>
+            <i class="fas fa-leaders"></i>
+            <span>Leaders</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showTab('frens')">
+            <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="icon" d="M18.7461 27.0742C17.8242 27.0742 17.1758 26.9414 16.8008 26.6758C16.4336 26.418 16.25 26.0312 16.25 25.5156C16.25 24.7578 16.4766 23.9648 16.9297 23.1367C17.3828 22.3008 18.0391 21.5195 18.8984 20.793C19.7578 20.0586 20.793 19.4648 22.0039 19.0117C23.2227 18.5508 24.5898 18.3203 26.1055 18.3203C27.6289 18.3203 28.9961 18.5508 30.207 19.0117C31.4258 19.4648 32.4609 20.0586 33.3125 20.793C34.1719 21.5195 34.8281 22.3008 35.2812 23.1367C35.7422 23.9648 35.9727 24.7578 35.9727 25.5156C35.9727 26.0312 35.7852 26.418 35.4102 26.6758C35.0352 26.9414 34.3867 27.0742 33.4648 27.0742H18.7461ZM26.1172 16.2227C25.2734 16.2227 24.4961 15.9961 23.7852 15.543C23.0742 15.082 22.5039 14.4648 22.0742 13.6914C21.6445 12.9102 21.4297 12.0352 21.4297 11.0664C21.4297 10.1133 21.6445 9.25391 22.0742 8.48828C22.5117 7.72266 23.0859 7.11719 23.7969 6.67188C24.5078 6.22656 25.2812 6.00391 26.1172 6.00391C26.9531 6.00391 27.7266 6.22266 28.4375 6.66016C29.1484 7.09766 29.7188 7.69922 30.1484 8.46484C30.5781 9.22266 30.793 10.082 30.793 11.043C30.793 12.0195 30.5781 12.8984 30.1484 13.6797C29.7188 14.4609 29.1484 15.082 28.4375 15.543C27.7266 15.9961 26.9531 16.2227 26.1172 16.2227ZM6.08984 27.0742C5.34766 27.0742 4.81641 26.9297 4.49609 26.6406C4.18359 26.3594 4.02734 25.9531 4.02734 25.4219C4.02734 24.6172 4.22656 23.7969 4.625 22.9609C5.02344 22.1172 5.59375 21.3438 6.33594 20.6406C7.08594 19.9375 7.98828 19.3711 9.04297 18.9414C10.1055 18.5039 11.2969 18.2852 12.6172 18.2852C13.7109 18.2852 14.6797 18.4297 15.5234 18.7188C16.375 19 17.1289 19.3594 17.7852 19.7969C17.1523 20.2891 16.5938 20.8594 16.1094 21.5078C15.6328 22.1484 15.2578 22.8125 14.9844 23.5C14.7109 24.1875 14.5664 24.8438 14.5508 25.4688C14.5352 26.0938 14.6797 26.6289 14.9844 27.0742H6.08984ZM12.6172 16.4922C11.8906 16.4922 11.2148 16.293 10.5898 15.8945C9.97266 15.4961 9.47656 14.957 9.10156 14.2773C8.72656 13.5977 8.53906 12.8398 8.53906 12.0039C8.53906 11.168 8.72656 10.418 9.10156 9.75391C9.48438 9.08984 9.98438 8.56641 10.6016 8.18359C11.2266 7.79297 11.8984 7.59766 12.6172 7.59766C13.3438 7.59766 14.0156 7.78906 14.6328 8.17188C15.2578 8.54688 15.7578 9.06641 16.1328 9.73047C16.5078 10.3867 16.6953 11.1367 16.6953 11.9805C16.6953 12.8242 16.5078 13.5898 16.1328 14.2773C15.7578 14.957 15.2617 15.4961 14.6445 15.8945C14.0273 16.293 13.3516 16.4922 12.6172 16.4922Z" fill="white"></path></svg>
+            <i class="fas fa-user-friends"></i>
+            <span>Friends</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showTab('earn')">
+            <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="icon" d="M14.9023 14.8398C15.1836 14.8398 15.4258 14.7383 15.6289 14.5352C15.832 14.332 15.9336 14.0898 15.9336 13.8086C15.9336 13.5195 15.832 13.2773 15.6289 13.082C15.4258 12.8789 15.1836 12.7773 14.9023 12.7773C14.6211 12.7773 14.3789 12.8789 14.1758 13.082C13.9727 13.2852 13.8711 13.5273 13.8711 13.8086C13.8711 14.082 13.9727 14.3242 14.1758 14.5352C14.3789 14.7383 14.6211 14.8398 14.9023 14.8398ZM14.9023 19.1172C15.1836 19.1172 15.4258 19.0156 15.6289 18.8125C15.832 18.6094 15.9336 18.3672 15.9336 18.0859C15.9336 17.7969 15.832 17.5547 15.6289 17.3594C15.4258 17.1641 15.1836 17.0664 14.9023 17.0664C14.6133 17.0664 14.3672 17.168 14.1641 17.3711C13.9688 17.5664 13.8711 17.8047 13.8711 18.0859C13.8711 18.3672 13.9688 18.6094 14.1641 18.8125C14.3672 19.0156 14.6133 19.1172 14.9023 19.1172ZM14.9023 23.6406C15.1836 23.6406 15.4258 23.5391 15.6289 23.3359C15.832 23.1328 15.9336 22.8906 15.9336 22.6094C15.9336 22.3281 15.832 22.0859 15.6289 21.8828C15.4258 21.6797 15.1836 21.5781 14.9023 21.5781C14.6211 21.5781 14.3789 21.6797 14.1758 21.8828C13.9727 22.0859 13.8711 22.3281 13.8711 22.6094C13.8711 22.8906 13.9727 23.1328 14.1758 23.3359C14.3789 23.5391 14.6211 23.6406 14.9023 23.6406ZM18.1367 14.5586H25.3789C25.582 14.5586 25.7578 14.4844 25.9062 14.3359C26.0547 14.1875 26.1289 14.0117 26.1289 13.8086C26.1289 13.5977 26.0547 13.418 25.9062 13.2695C25.7578 13.1133 25.582 13.0352 25.3789 13.0352H18.1367C17.9258 13.0352 17.7422 13.1133 17.5859 13.2695C17.4375 13.418 17.3633 13.5977 17.3633 13.8086C17.3633 14.0117 17.4375 14.1875 17.5859 14.3359C17.7422 14.4844 17.9258 14.5586 18.1367 14.5586ZM18.1367 18.8477H25.3789C25.5898 18.8477 25.7656 18.7734 25.9062 18.625C26.0547 18.4766 26.1289 18.2969 26.1289 18.0859C26.1289 17.875 26.0547 17.6992 25.9062 17.5586C25.7656 17.4102 25.5898 17.3359 25.3789 17.3359H18.1367C17.918 17.3359 17.7344 17.4102 17.5859 17.5586C17.4375 17.6992 17.3633 17.875 17.3633 18.0859C17.3633 18.2969 17.4375 18.4766 17.5859 18.625C17.7344 18.7734 17.918 18.8477 18.1367 18.8477ZM18.1367 23.3711H25.3789C25.582 23.3711 25.7578 23.2969 25.9062 23.1484C26.0547 22.9922 26.1289 22.8125 26.1289 22.6094C26.1289 22.3984 26.0547 22.2227 25.9062 22.082C25.7656 21.9336 25.5898 21.8594 25.3789 21.8594H18.1367C17.918 21.8594 17.7344 21.9336 17.5859 22.082C17.4375 22.2227 17.3633 22.3984 17.3633 22.6094C17.3633 22.8125 17.4375 22.9922 17.5859 23.1484C17.7422 23.2969 17.9258 23.3711 18.1367 23.3711ZM13.7773 30.0625C12.5664 30.0625 11.6562 29.7539 11.0469 29.1367C10.4453 28.5273 10.1445 27.6094 10.1445 26.3828V8.60547C10.1445 7.37891 10.4414 6.46094 11.0352 5.85156C11.6289 5.23437 12.5039 4.92578 13.6602 4.92578H13.9297C13.9297 4.94922 13.9297 4.97656 13.9297 5.00781C13.9297 5.03125 13.9297 5.05469 13.9297 5.07812V6.46094C13.9297 7.19531 14.1562 7.80078 14.6094 8.27734C15.0625 8.74609 15.6523 8.98047 16.3789 8.98047H23.6211C24.3477 8.98047 24.9375 8.74609 25.3906 8.27734C25.8438 7.80078 26.0703 7.19531 26.0703 6.46094V5.07812C26.0703 5.05469 26.0703 5.03125 26.0703 5.00781C26.0703 4.97656 26.0703 4.94922 26.0703 4.92578H26.3398C27.4961 4.92578 28.3711 5.23437 28.9648 5.85156C29.5586 6.46094 29.8555 7.37891 29.8555 8.60547V26.3828C29.8555 27.6094 29.5508 28.5273 28.9414 29.1367C28.3398 29.7539 27.4336 30.0625 26.2227 30.0625H13.7773ZM16.3789 7.62109C16.0352 7.62109 15.7656 7.51953 15.5703 7.31641C15.3828 7.11328 15.2891 6.82812 15.2891 6.46094V5.23047C15.2891 4.86328 15.3828 4.57812 15.5703 4.375C15.7656 4.17188 16.0352 4.07031 16.3789 4.07031H17.457C17.4961 3.40625 17.7578 2.83984 18.2422 2.37109C18.7344 1.90234 19.3203 1.66797 20 1.66797C20.6797 1.66797 21.2617 1.90234 21.7461 2.37109C22.2383 2.83984 22.5039 3.40625 22.543 4.07031H23.6211C23.9648 4.07031 24.2305 4.17188 24.418 4.375C24.6133 4.57812 24.7109 4.86328 24.7109 5.23047V6.46094C24.7109 6.82812 24.6133 7.11328 24.418 7.31641C24.2305 7.51953 23.9648 7.62109 23.6211 7.62109H16.3789ZM20 5.18359C20.2812 5.18359 20.5195 5.08203 20.7148 4.87891C20.918 4.67578 21.0195 4.4375 21.0195 4.16406C21.0195 3.875 20.918 3.63281 20.7148 3.4375C20.5195 3.23438 20.2812 3.13281 20 3.13281C19.7188 3.13281 19.4766 3.23438 19.2734 3.4375C19.0781 3.63281 18.9805 3.875 18.9805 4.16406C18.9805 4.4375 19.0781 4.67578 19.2734 4.87891C19.4766 5.08203 19.7188 5.18359 20 5.18359Z" fill="white"></path></svg>
+            <i class="fas fa-user-earn"></i>
+            <span>Earn</span>
+        </a>
+    </nav>
+    {% else %}
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const telegram = window.Telegram.WebApp;
+            const tgWebAppData = telegram.initData;
+            if (tgWebAppData) {
+                // Отправляем данные на сервер
+                fetch("/initData", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ tgWebAppData }),
+                })
+                    .then((response) => {
+                        if (response.redirected) {
+                            window.location.href = response.url; // Редирект на главную
+                        } else {
+                            return response.json().then((data) => {
+                                document.body.innerHTML = `<p>Error: ${data.error}</p>`;
+                            });
+                        }
+                    })
+                    .catch((err) => {
+                        document.body.innerHTML = `<p>Failed to process data: ${err.message}</p>`;
+                    });
+            } else {
+                document.body.innerHTML = "<p>No Web App Data found.</p>";
+            }
+        });
+    </script>
+    {% endif %}
+</body>
+</html>

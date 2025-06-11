@@ -1,0 +1,635 @@
+@font-face {
+    font-family: 'SF Pro';
+    src: url('fonts/sfpro.otf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'SF Pro', sans-serif;
+    color: white;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(13, 13, 13);
+}
+
+#content {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+#home {
+    width: 96%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.navbar {
+    outline: 2px solid rgba(190, 190, 190, .2);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: #000000;
+    padding: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+}
+
+#score {
+    display: flex; /* Используем flexbox */
+    justify-content: center; /* Выравниваем по горизонтали */
+    align-items: center; /* Выравниваем по вертикали */
+    text-align: center; /* Выравниваем текст по центру */
+}
+
+.nav-item {
+    box-sizing: border-box;
+    fill: #333333;
+    text-align: center;
+    color: white;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgba(21, 21, 22, 0.75);
+    text-decoration: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.nav-item i {
+    font-size: 24px;
+    padding: 2px;
+}
+
+.tab-content {
+    display: none; /* Все вкладки скрыты по умолчанию */
+}
+
+.tab-content.active {
+    display: block; /* Активная вкладка отображается */
+}
+
+.nav-item {
+    cursor: pointer;
+}
+
+.nav-item .icon {
+    fill: gray;
+    transition: fill 0.3s ease;
+}
+
+.nav-item span {
+    display: block;
+    font-size: 13px;
+    margin-top: 4px;
+    color: gray;
+    transition: color 0.3s ease;
+}
+
+.nav-item.active .icon, .nav-item.active span {
+    color: #006699;
+    fill: #006699;
+}
+
+.btn-item {
+    box-sizing: border-box;
+    align-items: center;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+    border-radius: 12px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    min-height: 50px;
+    padding: 0 24px 0 12px;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#home > .main-con {
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box;
+    flex: 1;
+}
+
+.btn-item > .main-con {
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box;
+}
+
+
+.img-con {
+    box-sizing: border-box;
+    line-height: 0;
+    margin-right: 12px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 700;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box;
+
+}
+
+.btn-item > .img-con {
+    box-sizing: border-box;
+    line-height: 0;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 700;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box;
+
+}
+
+.btns-con {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box;
+    margin-bottom: 20px;
+}
+
+.balance-wrap {
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box;
+}
+
+.count {
+    box-sizing: border-box;
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 64px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box;
+
+}
+
+.currency {
+    box-sizing: border-box;
+    font-size: 24px;
+    margin-left: 6px;
+    padding-top: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    line-height: 24px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box;
+
+}
+
+.my-wrap {
+    box-sizing: border-box;
+    align-items: start;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 11px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box;
+}
+
+.connect-wallet-con {
+    box-sizing: border-box;
+    align-items: center;
+    background: none 0 0 / auto repeat scroll padding-box border-box;
+    border-radius: 17px;
+    display: flex;
+    font-size: 16px;
+    line-height: 16px;
+    margin: 0 153.875px;
+    padding: 4px 12px;
+    z-index: 1;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    position: absolute;
+    top: 3%;
+}
+
+
+#rewards.active {
+    position: relative;
+    z-index: 5;
+    display: block;
+}
+
+.modal-backdrop.swipe-able-popup-backdrop {
+    box-sizing: border-box;
+    transition: opacity 0.1s linear;
+    background-color: rgba(6, 8, 6, 0.2);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 1;
+    backdrop-filter: blur(10px);
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    z-index: 3;
+}
+
+.modal.swipe-able-popup-modal.fade.show {
+    box-sizing: border-box;
+    transition: all;
+    display: block;
+    height: 100%;
+    left: 0;
+    outline: rgb(255, 255, 255) none 0;
+    overflow: hidden auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 1;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(13, 13, 13, 0);
+    z-index: 4;
+}
+
+.modal-dialog.swipe-able-popup-wrapper {
+    box-sizing: border-box;
+    pointer-events: none;
+    position: relative;
+    width: 100%;
+    transform: none;
+    transition: none;
+    max-width: 500px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(13, 13, 13);
+}
+
+.modal-content {
+    box-sizing: border-box;
+    background-clip: padding-box;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    outline: rgb(255, 255, 255) none 0;
+    pointer-events: auto;
+    position: relative;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+}
+
+.swipe-able-popup-container.is-open {
+    box-sizing: border-box;
+    align-items: center;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+    border-radius: 18px 18px 0 0;
+    bottom: 0;
+    box-shadow: rgb(66, 65, 65) 0 0 14px 0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    transition: 0.25s ease-in-out;
+    width: 100%;
+    z-index: 2;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+}
+
+.rewards-history-con {
+    box-sizing: border-box;
+    padding: 24px 16px 35px;
+    position: relative;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+}
+
+.rewards-history-con > .inter.title {
+    box-sizing: border-box;
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 24px;
+    color: rgb(255, 255, 255);
+    line-height: 20px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+}
+
+.rewards-history-con > .section-items-con.transactions {
+    box-sizing: border-box;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(28, 28, 30);
+    border-radius: 16px;
+    height: 250px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+}
+
+.section-items-con.transactions > .show-more {
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    border-radius: 12px;
+    color: rgb(0, 0, 0);
+    margin: 10px auto;
+    padding: 10px 16px;
+    width: fit-content;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: nowrap;
+}
+
+.rewards-history-con > .cross-con {
+    box-sizing: border-box;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+}
+
+.section-items-con.transactions > .invite-item {
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 16px;
+    position: relative;
+    color: rgb(255, 255, 255);
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(28, 28, 30);
+}
+
+#rewards .invite-item:not(:last-child)::before {
+    content: ""; /* Псевдоэлемент пустой, используется для декоративных целей */
+    display: block; /* Делает псевдоэлемент блочным */
+    width: 100%; /* Полоска будет растягиваться на всю ширину элемента */
+    height: 1px; /* Высота полоски */
+    background-color: rgba(128, 128, 128, 0.5); /* Серый цвет с прозрачностью 50% */
+    position: absolute; /* Позиционируем относительно родителя */
+    bottom: 0; /* Полоска будет под элементом */
+    right: 0; /* Привязываем к левой стороне */
+}
+
+.wallet-con > .wallet {
+    box-sizing: border-box;
+    font-size: 17px;
+    line-height: 19px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(28, 28, 30);
+}
+
+.main-info {
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(28, 28, 30);
+}
+
+.main-info > .icon-con {
+    box-sizing: border-box;
+    line-height: 0;
+    align-items: center;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    margin-right: 12px;
+    min-width: 40px;
+    width: 40px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(28, 28, 30);
+}
+
+.wallet-con > .date {
+    box-sizing: border-box;
+    color: rgb(142, 142, 147);
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 600;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(28, 28, 30);
+}
+
+.points > .descr {
+    box-sizing: border-box;
+    margin-bottom: 0;
+    margin-top: 0;
+    color: rgb(52, 199, 89);
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 20px;
+    text-align: end;
+    font-weight: 600;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(28, 28, 30);
+}
+
+.points p {
+    box-sizing: border-box;
+    margin-bottom: 0;
+    margin-top: 0;
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    line-height: 20.4px;
+    text-align: end;
+
+    font-weight: 600;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(28, 28, 30);
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(13, 13, 13);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999; /* Обеспечивает, чтобы анимация была поверх всего контента */
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Серый фон */
+    border-top: 8px solid #3498db; /* Синий цвет для анимации */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite; /* Анимация вращения */
+}
+
+.loading-text {
+    margin-top: 25px; /* Отступ для текста ниже анимации */
+    font-size: 24px; /* Размер текста */
+    font-weight: bold; /* Жирный шрифт */
+    color: rgba(255, 255, 255, 0.5); /* Цвет текста */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

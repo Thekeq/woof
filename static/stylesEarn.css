@@ -1,0 +1,359 @@
+#earn {
+    user-select: none;
+}
+
+#earn.tab-content.active {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: calc(100% - 60px);
+    left: 0;
+    overflow: hidden auto;
+    padding: 15px 16px 24px;
+    position: absolute;
+    scrollbar-width: none;
+    top: 0;
+    width: 100%;
+    animation: 0.25s ease-in-out 0s 1 normal forwards running is-show-anim;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(13, 13, 13);
+}
+
+@font-face {
+    font-family: 'SF Pro';
+    src: url('fonts/sfpro.otf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#earn .section-con {
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 48px;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(13, 13, 13);
+}
+
+#earn .heading-con, #frens .heading-con {
+    box-sizing: border-box;
+    padding-top: 48px;
+    margin-bottom: 18px;
+    text-align: left;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(13, 13, 13);
+
+}
+
+#earn .heading-text, #frens .heading-text {
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    font-size: 45px;
+    font-weight: 400;
+    line-height: 56.25px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    text-align: left;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(13, 13, 13);
+}
+
+#earn .heading-descr, #frens .heading-descr {
+    box-sizing: border-box;
+    align-items: center;
+    color: rgb(90, 90, 90);
+    display: flex;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 32px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    text-align: left;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(13, 13, 13);
+}
+
+#earn .strong, #frens .strong {
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    margin-right: 7px;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 32px;
+    text-transform: uppercase;
+    text-align: left;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(13, 13, 13);
+
+}
+
+#earn .type-select {
+    box-sizing: border-box;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgba(116, 116, 129, 0.08);
+    border-radius: 7px;
+    display: flex;
+    margin-bottom: 18px;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+}
+
+#earn .count {
+    box-sizing: border-box;
+    align-items: center;
+    background-color: rgb(90, 90, 90);
+    border-radius: 16px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    font-size: 9px;
+    justify-content: center;
+    margin-left: 5px;
+    min-height: 16px;
+    min-width: 16px;
+    padding: 0 5px;
+    font-weight: 600;
+    line-height: 9px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+}
+
+#earn .type-item.active {
+    box-sizing: border-box;
+    align-items: center;
+    border-radius: 7px;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-grow: 1;
+    font-size: 14px;
+    justify-content: center;
+    padding: 7px 8px;
+    transition: 0.5s;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(255, 255, 255);
+    font-weight: 600;
+    line-height: 14px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+}
+
+#earn .type-item {
+    box-sizing: border-box;
+    align-items: center;
+    border-radius: 7px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-grow: 1;
+    font-size: 14px;
+    justify-content: center;
+    padding: 7px 8px;
+    transition: 0.5s;
+    font-weight: 600;
+    line-height: 14px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box;
+}
+
+#earn .section-items-con.quests {
+    box-sizing: border-box;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+    border-radius: 16px;
+    overflow: hidden;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+}
+
+#earn .invite-item, #frens .invite-item {
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 16px;
+    position: relative;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+}
+
+#earn .invite-item:not(:last-child)::before, #frens .invite-item:not(:last-child)::before {
+    content: ""; /* Псевдоэлемент пустой, используется для декоративных целей */
+    display: block; /* Делает псевдоэлемент блочным */
+    width: 85%; /* Полоска будет растягиваться на всю ширину элемента */
+    height: 1px; /* Высота полоски */
+    background-color: rgba(128, 128, 128, 0.5); /* Серый цвет с прозрачностью 50% */
+    position: absolute; /* Позиционируем относительно родителя */
+    bottom: 0; /* Полоска будет под элементом */
+    right: 0; /* Привязываем к левой стороне */
+}
+
+#earn .icon-con {
+    box-sizing: border-box;
+    line-height: 0;
+    align-items: center;
+    border-radius: 9px;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    margin-right: 12px;
+    min-width: 40px;
+    overflow: hidden;
+    width: 40px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+}
+
+#earn .reward-count {
+    box-sizing: border-box;
+    margin-bottom: 0;
+    margin-top: 4px;
+    color: rgb(142, 142, 147);
+    font-size: 14px;
+    line-height: 19.2px;
+    font-weight: 600;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+}
+
+#earn .wallet, #frens .wallet {
+    box-sizing: border-box;
+    font-size: 17px;
+    line-height: 19.2px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+}
+
+#earn .points, #frens .points {
+    box-sizing: border-box;
+    align-items: flex-end;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+    justify-content: center;
+    line-height: 20.4px;
+    font-weight: 600;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+}
+
+#earn .start-btn {
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    border-radius: 750px;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    padding: 6px 16px;
+    transition: 0.2s;
+    line-height: 20.4px;
+    font-weight: 600;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    cursor: pointer;
+}
+
+#earn .check-con {
+    box-sizing: border-box;
+    margin: 0 20px;
+    min-height: 16px;
+    min-width: 16px;
+    width: 16px;
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    line-height: 20.4px;
+    font-weight: 600;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+}
+
+#earn .invite-item > .main-info, #frens .invite-item > .main-info {
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    margin-right: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: start;
+    text-size-adjust: 100%;
+    white-space: normal;
+    background: none 0 0 / auto repeat scroll padding-box border-box rgb(21, 21, 22);
+}
+
+.loading-animation {
+    display: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #3498db;
+    animation: blink 1.5s infinite; /* Анимация мигания текста */
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
