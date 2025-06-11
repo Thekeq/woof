@@ -5,13 +5,6 @@ db = DataBase("data.db")
 # Задания с вручную заданными ID
 inviteItemsData = {
     'limited': [
-    #    {
-    #    'id': 22,
-    #    'icon': '/static/media/wooflogo.svg',
-    #    'description': 'Invite 5 frens',
-    #    'reward': 25000,
-    #    'onclick': "invite_fren_limit({{userId}}, 5, 22)"
-    #    },
     ],
     'in-game': [
         {
@@ -65,13 +58,6 @@ inviteItemsData = {
         },
     ],
     'partners': [
-    #    {
-    #    'id': 23,
-    #    'icon': '/static/media/tgc.png',
-    #    'description': 'Follow Channel',
-    #    'reward': 2500,
-    #    'onclick': "partnerTelegram({{userId}}, 'https://t.me/+nK6rCXJ9E44xNjMy', 23)"
-    #    },
     ]
 }
 
